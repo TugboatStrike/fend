@@ -39,7 +39,16 @@ console.log("this works!2");
 */
 
 // build the nav
-
+let navList = document.getElementById("navbar__list");
+console.log(navList);
+let newElement = document.createElement('li');
+console.log(newElement);
+/*newElement.appendChild(document.createTextNode("list item"));*/
+newElement.textContent = 'list item';
+console.log(newElement);
+newElement.classList.add("menu__link")
+navList.appendChild(newElement);
+console.log(navList);
 
 // Add class 'active' to section when near top of viewport
 
