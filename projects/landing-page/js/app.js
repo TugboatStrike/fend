@@ -41,14 +41,26 @@ console.log("this works!2");
 // build the nav
 let navList = document.getElementById("navbar__list");
 console.log(navList);
-let newElement = document.createElement('li');
-console.log(newElement);
-/*newElement.appendChild(document.createTextNode("list item"));*/
-newElement.textContent = 'list item';
-console.log(newElement);
-newElement.classList.add("menu__link")
-navList.appendChild(newElement);
+let newAnchor = document.createElement('a');
+console.log(newAnchor);
+let newListItem = document.createElement('li');
+console.log(newListItem);
+/*newListItem.appendChild(document.createTextNode("list item"));*/
+newListItem.textContent = 'list item';
+console.log(newListItem);
+newAnchor.appendChild(newListItem)
+console.log(newAnchor);
+newAnchor.classList.add("menu__link")
+navList.appendChild(newAnchor);
 console.log(navList);
+let sectionList = document.querySelectorAll('section');
+console.log(sectionList);
+console.log('printing sections from list\n');
+for (const section of sectionList) {
+  console.log(section);
+  console.log('-------');
+}
+console.log('done!!!');
 
 // Add class 'active' to section when near top of viewport
 
