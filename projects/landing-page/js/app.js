@@ -58,9 +58,18 @@ console.log(sectionList);
 console.log('printing sections from list\n');
 for (const section of sectionList) {
   console.log(section);
+  console.log(section.id);
   console.log('-------');
 }
 console.log('done!!!');
+
+/*
+using this i can move to sections based on id.
+https://stackoverflow.com/questions/13735912/anchor-jumping-by-using-javascript
+https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+*/
+let alignToBot = {behavior: "smooth", block: "end", inline: "nearest"}
+sectionList[2].scrollIntoView(alignToBot);
 
 // Add class 'active' to section when near top of viewport
 
