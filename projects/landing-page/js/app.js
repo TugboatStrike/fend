@@ -29,7 +29,14 @@ console.log("this works!2");
  * Start Helper Functions
  *
 */
-
+function navButton(element) {
+  const newLi = document.createElement('li');
+  newLi.append(element.dataset.nav);
+  newLi.classList.add("menu__link")
+  return newLi;
+}/* creating nav buttons for the sectionList
+assuming it will have the dataset data-nav and class css 'menu__link'
+ */
 
 
 /**
@@ -40,18 +47,16 @@ console.log("this works!2");
 
 // build the nav
 let navList = document.getElementById("navbar__list");
+
 console.log(navList);
-let newAnchor = document.createElement('a');
-console.log(newAnchor);
 let newListItem = document.createElement('li');
 console.log(newListItem);
 /*newListItem.appendChild(document.createTextNode("list item"));*/
-newListItem.textContent = 'list item';
+newListItem.textContent = 'test ';
+newListItem.append('list item'); /*using the append instead of textContent*/
 console.log(newListItem);
-newAnchor.appendChild(newListItem)
-console.log(newAnchor);
-newAnchor.classList.add("menu__link")
-navList.appendChild(newAnchor);
+newListItem.classList.add("menu__link")
+navList.appendChild(newListItem);
 console.log(navList);
 let sectionList = document.querySelectorAll('section');
 console.log(sectionList);
@@ -70,6 +75,11 @@ https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
 */
 let alignToBot = {behavior: "smooth", block: "end", inline: "nearest"}
 sectionList[2].scrollIntoView(alignToBot);
+
+testNavButton = navButton(sectionList[1]);
+console.log(testNavButton);
+navList.appendChild(testNavButton);
+navList.appendChild(navButton(sectionList[2]));
 
 // Add class 'active' to section when near top of viewport
 
