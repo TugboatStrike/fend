@@ -47,24 +47,24 @@ assuming it will have the dataset data-nav and class css 'menu__link'
 
 // build the nav
 let navList = document.getElementById("navbar__list");
-
+/*
 console.log(navList);
 let newListItem = document.createElement('li');
 console.log(newListItem);
 /*newListItem.appendChild(document.createTextNode("list item"));*/
-newListItem.textContent = 'test ';
+/*newListItem.textContent = 'test ';
 newListItem.append('list item'); /*using the append instead of textContent*/
-console.log(newListItem);
+/*console.log(newListItem);
 newListItem.classList.add("menu__link")
 navList.appendChild(newListItem);
-console.log(navList);
+console.log(navList);*/
+
 let sectionList = document.querySelectorAll('section');
-console.log(sectionList);
-console.log('printing sections from list\n');
 for (const section of sectionList) {
   console.log(section);
   console.log(section.id);
   console.log('-------');
+  navList.appendChild(navButton(section));
 }
 console.log('done!!!');
 
@@ -75,11 +75,11 @@ https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
 */
 let alignToBot = {behavior: "smooth", block: "end", inline: "nearest"}
 sectionList[2].scrollIntoView(alignToBot);
-
+/*
 testNavButton = navButton(sectionList[1]);
 console.log(testNavButton);
 navList.appendChild(testNavButton);
-navList.appendChild(navButton(sectionList[2]));
+navList.appendChild(navButton(sectionList[2]));*/
 
 // Add class 'active' to section when near top of viewport
 
