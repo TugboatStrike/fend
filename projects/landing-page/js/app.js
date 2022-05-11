@@ -41,7 +41,7 @@ function navButton(element) {
   newLi.innerHTML += `<a>${element.dataset.nav}</a>`;
   const newA = newLi.firstChild;
   /*newA.setAttribute("style", "pointer-events: none");*/
-  newA.setAttribute("style", "cursor: default", "pointer-events: none");
+  newA.setAttribute("style", "cursor: default");/*, "pointer-events: none");
   /*const newA = document.createElement('a');*/
   newA.classList.add("menu__link");
 
@@ -65,6 +65,7 @@ function scrollToSection(event) {
   let scrollToId = document.getElementById(event.target.dataset.navId);
   scrollToId.scrollIntoView(alignToBot);
   /*element.scrollIntoView(alignToBot);*/
+  event.preventDefault();
 }
 
 /**
