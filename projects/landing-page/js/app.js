@@ -65,7 +65,7 @@ function scrollToSection(event) {
   let scrollToId = document.getElementById(event.target.dataset.navId);
   scrollToId.scrollIntoView(alignToBot);
   /*element.scrollIntoView(alignToBot);*/
-  event.preventDefault();
+  event.preventDefault();/* preventing anchors from doing its normal action*/
 }
 
 /**

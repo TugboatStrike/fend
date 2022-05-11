@@ -1,13 +1,17 @@
-# Landing Page Project
+# Byron's Landing Page Project
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+* [Description](#Description)
 
-## Instructions
+## Description
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The project uses the initial starter code to create the functional webpage. The
+HTML and CSS has not been changed except to create the links and folder
+structure as needed.
 
-To get started, open `js/app.js` and start building out the app's functionality
+This depends on the javascript to build out the navigation based on the section
+information. The active section is also highlighted depending on it's visible
+position in the viewport.
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+The HTML did have an additional section created to meet specification.
