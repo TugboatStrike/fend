@@ -78,17 +78,23 @@ function isInViewport(el) {
 for (const section of sectionList) {
   navList.appendChild(navButton(section));
 }
-
+const menuList = document.querySelectorAll(".menu__link")
 
 // Add class 'active' to section when near top of viewport
 /* Add active class to section if its in viewport*/
 function checkActiveSection() {
+  let sectionCount = 0;
   for (const section of sectionList) {
     if (isInViewport(section)) {
+      console.log(true);
       section.classList.add(activeText)
+      menuList[sectionCount].setAttribute("style", "opacity: 0.2");
     } else {
+      console.log(false);
       section.classList.remove(activeText)
+      menuList[sectionCount].setAttribute("style", "opacity: 1.0");
     }
+    sectionCount += 1;
   }
 }
 
