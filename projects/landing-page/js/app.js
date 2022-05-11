@@ -12,7 +12,6 @@
  * JS Standard: ESlint
  *
 */
-console.log("this works!2");
 /**
  * Comments should be present at the beginning of each procedure and class.
  * Great to have comments before crucial code sections within the procedure.
@@ -23,7 +22,7 @@ console.log("this works!2");
  *
 */
 const alignToBot = {behavior: "smooth", block: "end", inline: "nearest"}
-
+const activeText = "your-active-class";
 /**
  * End Global Variables
  * Start Helper Functions
@@ -31,17 +30,22 @@ const alignToBot = {behavior: "smooth", block: "end", inline: "nearest"}
 */
 function navButton(element) {
   const newLi = document.createElement('li');
-  newLi.append(element.dataset.nav);/* Add element dataset text as li display text*/
-  newLi.classList.add("menu__link");/* Add class "menu__link" to li*/
+  const newA = document.createElement('a');
+  newA.classList.add("menu__link");
+  newA.append(element.dataset.nav);/* Add element dataset text as li display text*/
+
+  /*newLi.classList.add("menu__link");/* Add class "menu__link" to li*/
   newLi.addEventListener('click', scrollToSection);
-  newLi.dataset.navId = element.id; /* Add dataset of section ID*/
-  newLi.dataset.nav = element.dataset.nav;/* Add nav text as prop to li*/
+  newA.dataset.navId = element.id; /* Add dataset of section ID*/
+  newA.dataset.nav = element.dataset.nav;/* Add nav text as prop to li*/
+  newLi.appendChild(newA);
   return newLi;
   /*element.scrollIntoView(alignToBot);*/
 }/* creating nav buttons for the sectionList
 assuming it will have the dataset data-nav and class css 'menu__link'
  */
 
+let navList = document.getElementById("navbar__list");
 
 function scrollToSection(event) {
   let scrollToId = document.getElementById(event.target.dataset.navId);
@@ -56,7 +60,8 @@ function scrollToSection(event) {
 */
 
 // build the nav
-let navList = document.getElementById("navbar__list");
+
+
 /*
 console.log(navList);
 let newListItem = document.createElement('li');
@@ -73,7 +78,6 @@ let sectionList = document.querySelectorAll('section');
 for (const section of sectionList) {
   navList.appendChild(navButton(section));
 }
-console.log('done!!!');
 
 /*
 using this i can move to sections based on id.
@@ -89,10 +93,7 @@ console.log(testNavButton);
 navList.appendChild(testNavButton);
 navList.appendChild(navButton(sectionList[2]));*/
 
-let testClick = document.querySelector('#section2')
-testClick.addEventListener('click', function testingLog(){
-  console.log('testing clicked');
-})
+
 
 
 const box = document.querySelector('#section2');
@@ -117,21 +118,17 @@ function isInViewport(el) {
     );
 }
 
-const activeText = "your-active-class";
-
-document.addEventListener('scroll', function() {
-  console.log('---start---');
+function checkActiveSection() {
   for (const section of sectionList) {
     if (isInViewport(section)) {
       section.classList.add(activeText)
     } else {
       section.classList.remove(activeText)
     }
-
-    console.log(isInViewport(section));
   }
-  console.log('---end---');
-})
+}
+
+document.addEventListener('scroll', checkActiveSection);
 // Add class 'active' to section when near top of viewport
 
 
