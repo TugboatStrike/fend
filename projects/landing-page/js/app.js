@@ -66,9 +66,6 @@ function isInViewport(el) {
 }
 
 
-
-
-
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -110,7 +107,6 @@ function scrollToSection(event) {
     event.preventDefault();/* preventing anchors from doing its normal action*/
   }
 }
-
 
 
 /**
