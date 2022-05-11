@@ -58,8 +58,11 @@ function isInViewport(el) {
 
     );*/
   return (
-        rect.top >= 0 &&
-        rect.left >= 0 );
+        rect.top >= -200 &&
+        rect.left >= -200 &&
+        rect.top < 400 &&
+        rect.left < 400
+      );
 }
 
 
@@ -86,11 +89,9 @@ function checkActiveSection() {
   let sectionCount = 0;
   for (const section of sectionList) {
     if (isInViewport(section)) {
-      console.log(true);
       section.classList.add(activeText)
       menuList[sectionCount].setAttribute("style", "opacity: 0.2");
     } else {
-      console.log(false);
       section.classList.remove(activeText)
       menuList[sectionCount].setAttribute("style", "opacity: 1.0");
     }
