@@ -23,49 +23,37 @@
 */
 const alignToBot = {behavior: "smooth", block: "end", inline: "nearest"}
 const activeText = "your-active-class";
+const navList = document.getElementById("navbar__list");
+
 /**
  * End Global Variables
  * Start Helper Functions
  *
 */
 
-/*const disableAnchor = {
-  pointer-events: none;
-  cursor: default;
-};*/
-/*$("a").css("pointer-events", "none");
-$("a").css("cursor", "default");*/
-
+/* creating nav buttons for the sectionList assuming it will have the
+dataset data-nav and class css 'menu__link'*/
 function navButton(element) {
   const newLi = document.createElement('li');
-  newLi.innerHTML += `<a>${element.dataset.nav}</a>`;
+  newLi.innerHTML += `<a href="#">${element.dataset.nav}</a>`;
   const newA = newLi.firstChild;
-  /*newA.setAttribute("style", "pointer-events: none");*/
-  newA.setAttribute("style", "cursor: default");/*, "pointer-events: none");
-  /*const newA = document.createElement('a');*/
+  newA.setAttribute("style", "cursor: default");
   newA.classList.add("menu__link");
-
-  /*newA.append(element.dataset.nav);/* Add element dataset text as li display text*/
-  /*newLi.dataset.navid = element.id; /* Add dataset of section ID*/
-  /*newLi.classList.add("menu__link");/* Add class "menu__link" to li*/
   newA.dataset.navId = element.id; /* Add dataset of section ID*/
-  newA.addEventListener('click', scrollToSection);
-  /*newA.dataset.navId = element.id; /* Add dataset of section ID*/
-  /*newA.dataset.nav = element.dataset.nav;/* Add nav text as prop to li*/
-  /*newLi.appendChild(newA);*/
+  /*newA.addEventListener('click', scrollToSection);*/
   return newLi;
-  /*element.scrollIntoView(alignToBot);*/
-}/* creating nav buttons for the sectionList
-assuming it will have the dataset data-nav and class css 'menu__link'
- */
+}
 
-let navList = document.getElementById("navbar__list");
-
+/* based on selected target the nav button calls this to scroll to associated
+section. */
 function scrollToSection(event) {
-  let scrollToId = document.getElementById(event.target.dataset.navId);
-  scrollToId.scrollIntoView(alignToBot);
-  /*element.scrollIntoView(alignToBot);*/
-  event.preventDefault();/* preventing anchors from doing its normal action*/
+  if (typeof(event.target.dataset.navId) != "undefined") {
+    console.log(event.target.dataset.navId);
+    let scrollToId = document.getElementById(event.target.dataset.navId);
+    scrollToId.scrollIntoView(alignToBot);
+    event.preventDefault();/* preventing anchors from doing its normal action*/
+  }
+
 }
 
 /**
@@ -73,6 +61,8 @@ function scrollToSection(event) {
  * Begin Main Functions
  *
 */
+
+navList.addEventListener('click', scrollToSection);
 
 // build the nav
 
