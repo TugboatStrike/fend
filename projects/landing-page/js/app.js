@@ -24,12 +24,13 @@
 const alignToBot = {behavior: "smooth", block: "end", inline: "nearest"}
 const activeText = "your-active-class";
 const navList = document.getElementById("navbar__list");
-
+const sectionList = document.querySelectorAll('section');
 /**
  * End Global Variables
  * Start Helper Functions
  *
 */
+
 
 /* creating nav buttons for the sectionList assuming it will have the
 dataset data-nav and class css 'menu__link'*/
@@ -44,76 +45,11 @@ function navButton(element) {
   return newLi;
 }
 
-/* based on selected target the nav button calls this to scroll to associated
-section. */
-function scrollToSection(event) {
-  if (typeof(event.target.dataset.navId) != "undefined") {
-    console.log(event.target.dataset.navId);
-    let scrollToId = document.getElementById(event.target.dataset.navId);
-    scrollToId.scrollIntoView(alignToBot);
-    event.preventDefault();/* preventing anchors from doing its normal action*/
-  }
 
-}
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
-*/
-
-navList.addEventListener('click', scrollToSection);
-
-// build the nav
-
-
-/*
-console.log(navList);
-let newListItem = document.createElement('li');
-console.log(newListItem);
-/*newListItem.appendChild(document.createTextNode("list item"));*/
-/*newListItem.textContent = 'test ';
-newListItem.append('list item'); /*using the append instead of textContent*/
-/*console.log(newListItem);
-newListItem.classList.add("menu__link")
-navList.appendChild(newListItem);
-console.log(navList);*/
-
-let sectionList = document.querySelectorAll('section');
-for (const section of sectionList) {
-  navList.appendChild(navButton(section));
-}
-
-/*
-using this i can move to sections based on id.
-https://stackoverflow.com/questions/13735912/anchor-jumping-by-using-javascript
-https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
-*/
-/*
-let alignToBot = {behavior: "smooth", block: "end", inline: "nearest"}
-sectionList[2].scrollIntoView(alignToBot);*/
-/*
-testNavButton = navButton(sectionList[1]);
-console.log(testNavButton);
-navList.appendChild(testNavButton);
-navList.appendChild(navButton(sectionList[2]));*/
-
-
-
-
-const box = document.querySelector('#section2');
-const rect = box.getBoundingClientRect();
-
-/*
-const isInViewport = rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-
-console.log(isInViewport);*/
-
+/* Check if element is in the viewport*/
 function isInViewport(el) {
   const rect = el.getBoundingClientRect();
+  /* Saved for checking full window instead of just top of element.*/
   /*return (
         rect.top >= 0 &&
         rect.left >= 0 &&
@@ -126,6 +62,26 @@ function isInViewport(el) {
         rect.left >= 0 );
 }
 
+
+
+
+
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ *
+*/
+
+
+// build the nav
+/* For each section create a navigation button.*/
+for (const section of sectionList) {
+  navList.appendChild(navButton(section));
+}
+
+
+// Add class 'active' to section when near top of viewport
+/* Add active class to section if its in viewport*/
 function checkActiveSection() {
   for (const section of sectionList) {
     if (isInViewport(section)) {
@@ -136,11 +92,18 @@ function checkActiveSection() {
   }
 }
 
-document.addEventListener('scroll', checkActiveSection);
-// Add class 'active' to section when near top of viewport
-
 
 // Scroll to anchor ID using scrollTO event
+/* based on selected target the nav button calls this to scroll to associated
+section. */
+function scrollToSection(event) {
+  if (typeof(event.target.dataset.navId) != "undefined") {
+    let scrollToId = document.getElementById(event.target.dataset.navId);
+    scrollToId.scrollIntoView(alignToBot);
+    event.preventDefault();/* preventing anchors from doing its normal action*/
+  }
+}
+
 
 
 /**
@@ -149,8 +112,16 @@ document.addEventListener('scroll', checkActiveSection);
  *
 */
 
+
 // Build menu
+/* This doesn't make sense to have an event to build the menu.*/
+
 
 // Scroll to section on link click
+/* Created single event listener for the navigation buttons */
+navList.addEventListener('click', scrollToSection);
+
 
 // Set sections as active
+/* Add scroll listener to check for active section. */
+document.addEventListener('scroll', checkActiveSection);
