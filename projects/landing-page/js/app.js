@@ -28,17 +28,31 @@ const activeText = "your-active-class";
  * Start Helper Functions
  *
 */
+
+/*const disableAnchor = {
+  pointer-events: none;
+  cursor: default;
+};*/
+/*$("a").css("pointer-events", "none");
+$("a").css("cursor", "default");*/
+
 function navButton(element) {
   const newLi = document.createElement('li');
-  const newA = document.createElement('a');
+  newLi.innerHTML += `<a>${element.dataset.nav}</a>`;
+  const newA = newLi.firstChild;
+  /*newA.setAttribute("style", "pointer-events: none");*/
+  newA.setAttribute("style", "cursor: default", "pointer-events: none");
+  /*const newA = document.createElement('a');*/
   newA.classList.add("menu__link");
-  newA.append(element.dataset.nav);/* Add element dataset text as li display text*/
 
+  /*newA.append(element.dataset.nav);/* Add element dataset text as li display text*/
+  /*newLi.dataset.navid = element.id; /* Add dataset of section ID*/
   /*newLi.classList.add("menu__link");/* Add class "menu__link" to li*/
-  newLi.addEventListener('click', scrollToSection);
   newA.dataset.navId = element.id; /* Add dataset of section ID*/
-  newA.dataset.nav = element.dataset.nav;/* Add nav text as prop to li*/
-  newLi.appendChild(newA);
+  newA.addEventListener('click', scrollToSection);
+  /*newA.dataset.navId = element.id; /* Add dataset of section ID*/
+  /*newA.dataset.nav = element.dataset.nav;/* Add nav text as prop to li*/
+  /*newLi.appendChild(newA);*/
   return newLi;
   /*element.scrollIntoView(alignToBot);*/
 }/* creating nav buttons for the sectionList
